@@ -4,7 +4,7 @@ import './App.css'
 import {API_BASE_URL} from './constants/appConstants'
 import type {IServerResponse} from './types/IServerResponse'
 import type {IUser} from './types/IUser'
-import {useEffect, useState} from 'react'
+import {useQuery, type UseQueryResult} from '@tanstack/react-query'
 
 const fetchUser = async (): Promise<IServerResponse<IUser>> => {
   return fetch(`${API_BASE_URL}user`, {
@@ -21,31 +21,25 @@ const fetchUser = async (): Promise<IServerResponse<IUser>> => {
   })
 }
 
+const useUserApi = (): UseQueryResult<IServerResponse<IUser>, Error> => {
+  return useQuery({
+    queryKey: ['user'],
+    queryFn: fetchUser,
+  })
+}
+
 export const App: React.FC = () => {
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState<IUser | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const {data, error, isLoading} = useUserApi()
 
-  useEffect(() => {
-    fetchUser()
-      .then(res => {
-        setUser(res.data)
-      })
-      .catch(err => {
-        setError(err.message)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>
   }
 
   if (error) {
-    return <div>Error: {error}</div>
+    console.error('Error fetching user:', error)
+    return <div>Error: {error?.message || 'Something went wrong'}</div>
   }
+  const user = data?.data
   if (!user) {
     throw new Error('User not found')
   }
