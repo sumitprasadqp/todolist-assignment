@@ -8,6 +8,7 @@ import {
   WuModalContent,
   WuModalFooter,
   WuModalHeader,
+  WuSubtext,
 } from '@npm-questionpro/wick-ui-lib'
 import {
   useMutation,
@@ -183,36 +184,38 @@ export const TodoListScreen: React.FC = () => {
       <div>
         {todos.map((todo, index) => (
           <WuCard key={todo.id} className="wu-m-2">
-              <WuCardHeader>
-                <WuHeading size="md">
-                  <span className="wu-flex wu-justify-start">
-                    {index + 1} {todo.title}
+            <WuCardHeader>
+              <WuHeading size="md">
+                <span className="wu-flex wu-justify-start">
+                  {index + 1} {todo.title}
+                </span>
+                <WuSubtext size="lg">
+                  <span className="wu-flex wu-justify-end status">
+                    {todo.status} | {todo.priority + ' Priority'}
                   </span>
-                  <span className="wu-flex wu-justify-end">
-                    {todo.status.toUpperCase()}
-                  </span>
-                </WuHeading>
-              </WuCardHeader>
-              <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
-                {todo.description}
+                </WuSubtext>
+              </WuHeading>
+            </WuCardHeader>
+            <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
+              {todo.description}
+            </div>
+            <WuCardHeader className="wu-flex wu-justify-start">
+              <div className={classes['todo-actions']}>
+                <WuButton
+                  variant="outline"
+                  onClick={() => handleOpenEdit(todo)}
+                >
+                  Edit
+                </WuButton>
+                <WuButton
+                  color="error"
+                  onClick={() => handleDelete(todo.id)}
+                  disabled={deleteMutation.isPending}
+                >
+                  Delete
+                </WuButton>
               </div>
-              <WuCardHeader className="wu-flex wu-justify-start">
-                <div className={classes['todo-actions']}>
-                  <WuButton
-                    variant="outline"
-                    onClick={() => handleOpenEdit(todo)}
-                  >
-                    Edit
-                  </WuButton>
-                  <WuButton
-                    color="error"
-                    onClick={() => handleDelete(todo.id)}
-                    disabled={deleteMutation.isPending}
-                  >
-                    Delete
-                  </WuButton>
-                </div>
-              </WuCardHeader>
+            </WuCardHeader>
           </WuCard>
         ))}
       </div>
