@@ -1,0 +1,8 @@
+.todo {
+  margin: 1em 0;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.5em;
+}
