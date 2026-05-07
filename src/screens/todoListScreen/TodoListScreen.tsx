@@ -1,5 +1,8 @@
 import {
   WuButton,
+  WuCard,
+  WuCardHeader,
+  WuHeading,
   WuModal,
   WuModalClose,
   WuModalContent,
@@ -179,26 +182,38 @@ export const TodoListScreen: React.FC = () => {
 
       <div>
         {todos.map((todo, index) => (
-          <div key={todo.id} className={classes.todo}>
-            <div className={classes['todo-content']}>
-              <p>
-                {index + 1} {todo.title}
-              </p>
-              <p>{todo.description}</p>
-            </div>
-            <div className={classes['todo-actions']}>
-              <WuButton variant="outline" onClick={() => handleOpenEdit(todo)}>
-                Edit
-              </WuButton>
-              <WuButton
-                color="error"
-                onClick={() => handleDelete(todo.id)}
-                disabled={deleteMutation.isPending}
-              >
-                Delete
-              </WuButton>
-            </div>
-          </div>
+          <WuCard key={todo.id} className="wu-m-2">
+              <WuCardHeader>
+                <WuHeading size="md">
+                  <span className="wu-flex wu-justify-start">
+                    {index + 1} {todo.title}
+                  </span>
+                  <span className="wu-flex wu-justify-end">
+                    {todo.status.toUpperCase()}
+                  </span>
+                </WuHeading>
+              </WuCardHeader>
+              <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
+                {todo.description}
+              </div>
+              <WuCardHeader className="wu-flex wu-justify-start">
+                <div className={classes['todo-actions']}>
+                  <WuButton
+                    variant="outline"
+                    onClick={() => handleOpenEdit(todo)}
+                  >
+                    Edit
+                  </WuButton>
+                  <WuButton
+                    color="error"
+                    onClick={() => handleDelete(todo.id)}
+                    disabled={deleteMutation.isPending}
+                  >
+                    Delete
+                  </WuButton>
+                </div>
+              </WuCardHeader>
+          </WuCard>
         ))}
       </div>
       <WuModal open={isOpen} onOpenChange={handleModalOpenChange}>
