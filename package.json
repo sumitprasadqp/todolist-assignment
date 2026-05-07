@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start:dev": "NODE_ENV=development vite",
+    "start:mock_dev": "NODE_ENV=development vite --mode mock",
+    "build": "NODE_ENV=production tsc -b && vite build",
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
