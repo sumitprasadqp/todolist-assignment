@@ -1,12 +1,25 @@
-import React from 'react'
-import './App.css'
+import {WuPrimaryNavbar} from '@npm-questionpro/wick-ui-lib'
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <>
-      <h1>App</h1>
+      {/* <TodoListScreen /> */}
+      <WuPrimaryNavbar
+        Links={[
+          <a key="home" href="#" className="active">
+            Home
+          </a>,
+          <a key="about" href="#">
+            About
+          </a>,
+          <a key="services" href="#">
+            Services
+          </a>,
+          <a key="contact" href="#">
+            Contact
+          </a>,
+        ]}
+      />
     </>
   )
 }
-
-export default App
