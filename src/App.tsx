@@ -1,9 +1,7 @@
+import React from 'react'
 import './App.css'
 
-function App() {
-  const x = () => {}
-  console.log(x)
-
+const App: React.FC = () => {
   return (
     <>
       <h1>App</h1>
