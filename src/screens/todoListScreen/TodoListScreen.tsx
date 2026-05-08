@@ -189,16 +189,16 @@ export const TodoListScreen: React.FC = () => {
                 <span className="wu-flex wu-justify-start">
                   {index + 1} {todo.title}
                 </span>
-                <WuSubtext size="lg">
+                {/* <WuSubtext size="lg">
                   <span className="wu-flex wu-justify-end status">
                     {todo.status} | {todo.priority + ' Priority'}
                   </span>
-                </WuSubtext>
+                </WuSubtext> */}
               </WuHeading>
             </WuCardHeader>
-            <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
+            {/* <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
               {todo.description}
-            </div>
+            </div> */}
             <WuCardHeader className="wu-flex wu-justify-start">
               <div className={classes['todo-actions']}>
                 <WuButton
