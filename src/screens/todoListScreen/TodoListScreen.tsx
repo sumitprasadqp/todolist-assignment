@@ -8,7 +8,6 @@ import {
   WuModalContent,
   WuModalFooter,
   WuModalHeader,
-  WuSubtext,
 } from '@npm-questionpro/wick-ui-lib'
 import {
   useMutation,
@@ -189,16 +188,8 @@ export const TodoListScreen: React.FC = () => {
                 <span className="wu-flex wu-justify-start">
                   {index + 1} {todo.title}
                 </span>
-                {/* <WuSubtext size="lg">
-                  <span className="wu-flex wu-justify-end status">
-                    {todo.status} | {todo.priority + ' Priority'}
-                  </span>
-                </WuSubtext> */}
               </WuHeading>
             </WuCardHeader>
-            {/* <div className="wu-p-4 wu-h-20 wu-flex wu-items-center wu-justify-center">
-              {todo.description}
-            </div> */}
             <WuCardHeader className="wu-flex wu-justify-start">
               <div className={classes['todo-actions']}>
                 <WuButton
@@ -224,7 +215,9 @@ export const TodoListScreen: React.FC = () => {
           {editingTodo ? 'Edit Todo' : 'Create Todo'}
         </WuModalHeader>
         <WuModalContent>
+          <label htmlFor="title">Enter Todo Title</label>
           <input
+            id="title"
             type="text"
             value={title}
             onChange={handleUpdateTitle}
